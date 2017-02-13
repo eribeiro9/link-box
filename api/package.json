@@ -1,0 +1,22 @@
+{
+  "name": "links-api",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "npm run lint && npm run build && npm run server",
+    "build": "gulp clean && babel src -d dist",
+    "lint": "eslint src/**/*.js",
+    "server": "node dist/server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.11.4",
+    "babel-preset-latest": "^6.13.2",
+    "del": "^2.2.2",
+    "eslint": "^3.3.1",
+    "gulp": "^3.9.1"
+  }
+}

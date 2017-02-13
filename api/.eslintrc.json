@@ -1,0 +1,19 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "env": {
+    "node": true
+  },
+  "extends": ["eslint:recommended"],
+  "rules": {
+    "eol-last": ["error"],
+    "indent": ["error", 2],
+    "max-len": ["error", 100],
+    "no-console": ["off"],
+    "no-tabs": ["error"],
+    "no-trailing-spaces": ["error"],
+    "semi": ["error", "always"]
+  }
+}
