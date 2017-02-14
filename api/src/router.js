@@ -1,28 +1,30 @@
 import express from 'express';
 import passport from 'passport';
 
+import './config/passport';
 import AuthenticationController from '../controllers/authentication';
+import ChatController from '../controllers/chat';
 
-// const requireAuth = passport.authenticate('jwt', { session: false });
-const requireLogin = passport.authenticate('local', { session: false });
+let requireAuth = passport.authenticate('jwt', { session: false });
+let requireLogin = passport.authenticate('local', { session: false });
 
-export function router(app) {
-  const apiRoutes = express.Router(),
-        authRoutes = express.Router();
+export function router (app) {
+  let apiRoutes = express.Router();
+  let authRoutes = express.Router();
+  let chatRoutes = express.Router();
 
-  //=========================
-  // Auth Routes
-  //=========================
-
-  // Set auth routes as subgroup/middleware to apiRoutes
   apiRoutes.use('/auth', authRoutes);
 
-  // Registration route
   authRoutes.post('/register', AuthenticationController.register);
-
-  // Login route
   authRoutes.post('/login', requireLogin, AuthenticationController.login);
 
-// Set url for API group routes
+
+  apiRoutes.use('/chat', chatRoutes);
+
+  chatRoutes.get('/', requireAuth, ChatController.getConversations);
+  chatRoutes.get('/:conversationId', requireAuth, ChatController.getConversation);
+  chatRoutes.post('/:conversationId', requireAuth, ChatController.sendReply);
+  chatRoutes.post('/new/:recipient', requireAuth, ChatController.newConversation);
+
   app.use('/api', apiRoutes);
 }
