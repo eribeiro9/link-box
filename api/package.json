@@ -2,6 +2,7 @@
   "name": "links-api",
   "version": "0.0.0",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "start": "npm run lint && npm run build && npm run server",
     "build": "gulp clean && babel src -d dist",
