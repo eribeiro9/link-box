@@ -1,0 +1,11 @@
+@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
+
+body {
+  background-color: lightgray;
+  font-family: "arial";
+  margin: 0;
+}
+
+h1,h2,h3,h4,p {
+  margin: 0;
+}

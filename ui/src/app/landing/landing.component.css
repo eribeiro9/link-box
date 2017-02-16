@@ -1,0 +1,30 @@
+.landing-header {
+  background-color: gray;
+  text-align: center;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.landing-user {
+  text-align: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.landing-button-group {
+  margin: auto;
+  width: 50%;
+  padding-top: 1rem;
+}
+
+.landing-about {
+  background-color: darkgray;
+  text-align: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.landing-exclaim {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
