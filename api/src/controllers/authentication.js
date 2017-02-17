@@ -47,7 +47,7 @@ export function register(req, res, next) {
 
     let newUser = new User({
       username: username,
-      email: email,
+      email: email || null,
       password: password,
       profile: { },
       conversations: [ ]

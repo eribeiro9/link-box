@@ -27,12 +27,10 @@ export class RegisterComponent {
       email: this.model.email,
       password: this.model.password
     }).subscribe((res: any) => {
-      console.log(res)
       this.cookieService.put('lnktkn', res.token);
-      //this.router.navigate(['/']);
+      this.router.navigate(['/']);
     }, (err: any) => {
       console.error(err);
-      // show error
     });
   }
 }
