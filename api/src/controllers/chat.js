@@ -1,5 +1,5 @@
-import Conversation from '../models/conversation';
-import Message from '../models/message';
+import { Conversation } from '../models/conversation';
+import { Message } from '../models/message';
 
 export function getConversations (req, res, next) {
   // Only return one message from each conversation to display as snippet

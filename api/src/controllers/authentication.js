@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
-import User from '../models/user';
-import CONFIG from '../config/main';
+import { User } from '../models/user';
+import { CONFIG } from '../config/main';
 
 function generateToken(user) {
   return jwt.sign(user, CONFIG.SECRET, {
@@ -9,13 +9,12 @@ function generateToken(user) {
   });
 }
 
-function setUserInfo(request) {
+function setUserInfo(user) {
   return {
-    _id: request._id,
-    firstName: request.profile.firstName,
-    lastName: request.profile.lastName,
-    email: request.email,
-    role: request.role,
+    _id: user._id,
+    username: user.username,
+    email: user.email,
+    role: user.role
   };
 }
 
@@ -29,48 +28,33 @@ export function login(req, res) {
 }
 
 export function register(req, res, next) {
+  const username = req.body.username;
   const email = req.body.email;
-  const firstName = req.body.firstName;
-  const lastName = req.body.lastName;
   const password = req.body.password;
 
-  // Return error if no email provided
-  if (!email) {
-    return res.status(422).send({ error: 'You must enter an email address.'});
-  }
-
-  // Return error if full name not provided
-  if (!firstName || !lastName) {
-    return res.status(422).send({ error: 'You must enter your full name.'});
-  }
-
-  // Return error if no password provided
-  if (!password) {
+  if (!username) {
+    return res.status(422).send({ error: 'You must enter a username.'});
+  } else if (!password) {
     return res.status(422).send({ error: 'You must enter a password.' });
   }
 
-  User.findOne({ email: email }, function(err, existingUser) {
+  User.findOne({ username: username }, function(err, existingUser) {
     if (err) { return next(err); }
 
-    // If user is not unique, return error
     if (existingUser) {
-      return res.status(422).send({ error: 'That email address is already in use.' });
+      return res.status(422).send({ error: 'That username is already in use.' });
     }
 
-    // If email is unique and password was provided, create account
-    let user = new User({
+    let newUser = new User({
+      username: username,
       email: email,
       password: password,
-      profile: { firstName: firstName, lastName: lastName }
+      profile: { },
+      conversations: [ ]
     });
 
-    user.save(function(err, user) {
+    newUser.save(function(err, user) {
       if (err) { return next(err); }
-
-      // Subscribe member to Mailchimp list
-      // mailchimp.subscribeToNewsletter(user.email);
-
-      // Respond with JWT if user was created
 
       let userInfo = setUserInfo(user);
 
@@ -92,7 +76,6 @@ export function roleAuthorization(role) {
         return next(err);
       }
 
-      // If user is found, check role.
       if (foundUser.role == role) {
         return next();
       }
