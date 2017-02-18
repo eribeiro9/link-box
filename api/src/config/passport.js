@@ -3,7 +3,7 @@ import LocalStrategy from 'passport-local';
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
 
 import { CONFIG } from './main';
-import User from '../models/user';
+import { User } from '../models/user';
 
 // LOCAL =======================================================================
 

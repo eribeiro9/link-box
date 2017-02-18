@@ -1,1 +1,2 @@
-<app-landing *ngIf="!user"></app-landing>
+<app-landing *ngIf="!loggedIn"></app-landing>
+<app-conversations *ngIf="loggedIn"></app-conversations>

@@ -10,7 +10,7 @@ import { AppService } from '../app.service';
 export class HomeComponent {
   constructor(private appService: AppService) { }
 
-  get user(): any {
-    return this.appService.getUser();
+  get loggedIn(): boolean {
+    return this.appService.hasToken();
   }
 }

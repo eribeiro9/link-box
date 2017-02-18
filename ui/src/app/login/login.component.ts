@@ -25,7 +25,6 @@ export class LoginComponent {
       username: this.model.username,
       password: this.model.password
     }).subscribe((res: any) => {
-      console.log(res)
       this.cookieService.put('lnktkn', res.token);
       this.router.navigate(['/']);
     }, (err: any) => {
