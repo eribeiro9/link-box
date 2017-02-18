@@ -9,3 +9,22 @@ body {
 h1,h2,h3,h4,p {
   margin: 0;
 }
+
+.container {
+  background-color: white;
+  margin: 9rem 1rem 0 1rem;
+}
+
+.container-header {
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.container-body {
+  padding: 1rem;
+}
+
+.container-footer {
+  text-align: center;
+  padding-bottom: 1rem;
+}

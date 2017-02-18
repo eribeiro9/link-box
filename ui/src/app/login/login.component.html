@@ -1,3 +1,27 @@
-<p>
-  login works!
-</p>
+<div class="container">
+  <div class="container-header">
+    <h1>Login</h1>
+  </div>
+  <form (ngSubmit)="login($event)">
+    <div class="container-body">
+      <md-input-container>
+        <input mdInput required
+               type="text"
+               name="username"
+               placeholder="Username"
+               [(ngModel)]="model.username" />
+      </md-input-container>
+      <md-input-container>
+        <input mdInput required
+               type="password"
+               name="password"
+               placeholder="Password"
+               [(ngModel)]="model.password" />
+      </md-input-container>
+    </div>
+    <div class="container-footer">
+      <button md-raised-button (click)="routeBack()">Back</button>
+      <button md-raised-button type="submit" color="primary">Login</button>
+    </div>
+  </form>
+</div>

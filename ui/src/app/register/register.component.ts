@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'angular2-cookie/core';
 
@@ -21,7 +21,8 @@ export class RegisterComponent {
                private cookieService: CookieService,
                private router: Router) { }
 
-  register() {
+  register(event: Event): void {
+    event.preventDefault();
     this.registerService.register({
       username: this.model.username,
       email: this.model.email,
@@ -32,5 +33,9 @@ export class RegisterComponent {
     }, (err: any) => {
       console.error(err);
     });
+  }
+
+  routeBack(): void {
+    this.router.navigate(['/']);
   }
 }

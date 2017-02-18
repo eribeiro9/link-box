@@ -5,14 +5,14 @@ import { Observable } from 'rxjs/Observable';
 import { ApiHelpers } from '../common/api-helpers';
 
 @Injectable()
-export class RegisterService {
-  private registerUrl = ApiHelpers.url('/auth/register');
+export class LoginService {
+  private loginUrl = ApiHelpers.url('/auth/login');
 
   constructor(private http: Http) { }
 
-  register(data): Observable<string[]> {
+  login(data): Observable<string[]> {
     return this.http
-      .post(this.registerUrl, JSON.stringify(data), ApiHelpers.headerOptions)
+      .post(this.loginUrl, JSON.stringify(data), ApiHelpers.headerOptions)
       .map(ApiHelpers.parseResponse)
       .catch(ApiHelpers.handleError);
   }

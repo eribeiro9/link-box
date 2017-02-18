@@ -7,10 +7,10 @@ import User from '../models/user';
 
 // LOCAL =======================================================================
 
-let localOptions = { usernameField: 'email' };
+let localOptions = { usernameField: 'username' };
 
-let localLogin = new LocalStrategy(localOptions, function(email, password, done) {
-  User.findOne({ email: email }, function(err, user) {
+let localLogin = new LocalStrategy(localOptions, function(username, password, done) {
+  User.findOne({ username: username }, function(err, user) {
     if(err) { return done(err); }
     if(!user) { return done(null, false, {
       error: 'Your login details could not be verified. Please try again.'
