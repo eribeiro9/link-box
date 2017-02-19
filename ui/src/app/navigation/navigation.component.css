@@ -1,4 +1,10 @@
 .navbar {
+  width: 100%;
   position: fixed;
   bottom: 0;
+  background-color: gray;
+}
+
+.navbar-item {
+  width: 100%;
 }

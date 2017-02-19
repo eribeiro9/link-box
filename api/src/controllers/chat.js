@@ -2,7 +2,6 @@ import { Conversation } from '../models/conversation';
 import { Message } from '../models/message';
 
 export function getConversations (req, res, next) {
-  // Only return one message from each conversation to display as snippet
   Conversation.find({ participants: req.user._id })
     .select('_id')
     .exec((err, conversations) => {
@@ -11,27 +10,7 @@ export function getConversations (req, res, next) {
         return next(err);
       }
 
-      // Set up empty array to hold conversations + most recent message
-      const fullConversations = [];
-      conversations.forEach((conversation) => {
-        Message.find({ conversationId: conversation._id })
-          .sort('-createdAt')
-          .limit(1)
-          .populate({
-            path: 'author',
-            select: 'profile.firstName profile.lastName'
-          })
-          .exec((err, message) => {
-            if (err) {
-              res.send({ error: err });
-              return next(err);
-            }
-            fullConversations.push(message);
-            if (fullConversations.length === conversations.length) {
-              return res.status(200).json({ conversations: fullConversations });
-            }
-          });
-      });
+      return res.status(200).json({ conversations: conversations });
     });
 }
 
