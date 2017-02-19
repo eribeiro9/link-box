@@ -16,11 +16,13 @@ import { ProfileModule } from './profile/profile.module';
 import { AppComponent } from './app.component';
 import { AppService } from './app.service';
 import { HomeComponent } from './home/home.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,

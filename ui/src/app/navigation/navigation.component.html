@@ -1,0 +1,8 @@
+<nav md-tab-nav-bar class="navbar">
+  <a md-tab-link
+     *ngFor="let link of navLinks"
+     [routerLink]="link.route"
+     [active]="activeRoute === link.route">
+    {{link.label}}
+  </a>
+</nav>
