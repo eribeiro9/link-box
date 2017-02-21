@@ -1,16 +1,18 @@
-import { Conversation } from '../models/conversation';
-import { Message } from '../models/message';
+import {
+  Conversation,
+  Message
+} from '../models';
 
 export function getConversations (req, res, next) {
   Conversation.find({ participants: req.user._id })
-    .select('_id')
+    .populate('participants', '_id username')
     .exec((err, conversations) => {
       if (err) {
         res.send({ error: err });
         return next(err);
       }
 
-      return res.status(200).json({ conversations: conversations });
+      return res.status(200).json({ userId: req.user._id, conversations: conversations });
     });
 }
 

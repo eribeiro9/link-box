@@ -13,8 +13,11 @@ export class ConversationsComponent implements OnInit {
   constructor(private conversationsService: ConversationsService) { }
 
   ngOnInit() {
-    this.conversationsService.getConversations().subscribe((conversations) => {
-      this.conversations = conversations;
+    this.conversationsService.getConversations().subscribe((res: any) => {
+      this.conversations = res.conversations.map((conversation) => {
+        conversation.otherUser = conversation.participants.find(p => p._id !== res.userId);
+        return conversation;
+      });
     });
   }
 }

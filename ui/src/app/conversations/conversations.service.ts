@@ -1,19 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { CookieService } from 'angular2-cookie/core';
 import { Observable } from 'rxjs/Observable';
 
-import { ApiHelpers } from '../common/api-helpers';
+import { ApiService } from '../common/api.service';
 
 @Injectable()
-export class ConversationsService {
-  private getConversationsUrl = ApiHelpers.url('/chat');
+export class ConversationsService extends ApiService {
+  private getConversationsUrl = this.apiUrl('/chat');
 
-  constructor(private http: Http) { }
+  constructor(protected cookieService: CookieService,
+              private http: Http) {
+    super(cookieService);
+  }
 
   getConversations(): Observable<any[]> {
     return this.http
-      .get(this.registerUrl, ApiHelpers.headerOptions)
-      .map(ApiHelpers.parseResponse)
-      .catch(ApiHelpers.handleError);
+      .get(this.getConversationsUrl, this.getHeaderOptions(true))
+      .map(this.parseResponse)
+      .catch(this.handleError);
   }
 }
