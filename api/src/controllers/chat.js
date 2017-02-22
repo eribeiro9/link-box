@@ -18,11 +18,11 @@ export function getConversations (req, res, next) {
 
 export function getConversation (req, res, next) {
   Message.find({ conversationId: req.params.conversationId })
-    .select('createdAt link author')
+    .select('createdAt link description author')
     .sort('-createdAt')
     .populate({
       path: 'author',
-      select: 'profile.firstName profile.lastName'
+      select: '_id username'
     })
     .exec((err, messages) => {
       if (err) {

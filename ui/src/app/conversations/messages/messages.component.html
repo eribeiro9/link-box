@@ -1,0 +1,4 @@
+<md-nav-list>
+ <a md-list-item *ngFor="let msg of messages" [href]="msg.link" target="_blank">{{msg.description}}</a>
+ <md-list-item *ngIf="messages.length === 0">No messages</md-list-item>
+</md-nav-list>

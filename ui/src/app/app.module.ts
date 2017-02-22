@@ -28,14 +28,14 @@ import { NavigationComponent } from './navigation/navigation.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule,
     MaterialModule.forRoot(),
     LandingModule,
     RegisterModule,
     LoginModule,
     ConversationsModule,
     BookmarksModule,
-    ProfileModule
+    ProfileModule,
+    AppRoutingModule
   ],
   providers: [
     AppService,
