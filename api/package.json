@@ -5,27 +5,25 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run lint && npm run build && npm run server",
+    "heroku": "npm run build && npm run server",
     "build": "gulp clean && babel src -d dist",
     "lint": "eslint src/**/*.js",
     "server": "node dist/server.js"
   },
   "dependencies": {
+    "babel-cli": "^6.11.4",
+    "babel-preset-latest": "^6.13.2",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
     "cors": "^2.8.1",
+    "del": "^2.2.2",
     "express": "^4.14.0",
+    "gulp": "^3.9.1",
     "jsonwebtoken": "^7.2.1",
     "mongoose": "^4.8.2",
     "passport": "^0.3.2",
     "passport-jwt": "^2.2.1",
     "passport-local": "^1.0.0",
     "socket.io": "^1.7.2"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.11.4",
-    "babel-preset-latest": "^6.13.2",
-    "del": "^2.2.2",
-    "eslint": "^3.3.1",
-    "gulp": "^3.9.1"
   }
 }
