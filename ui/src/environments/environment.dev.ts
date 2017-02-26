@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
 
-  apiBaseUrl: 'http://api.linksave.tech/api'
+  apiBaseUrl: 'http://api.linksave.tech'
 };
