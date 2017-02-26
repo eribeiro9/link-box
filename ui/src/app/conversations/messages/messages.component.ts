@@ -9,6 +9,7 @@ import { MessagesService } from './messages.service';
   styleUrls: ['./messages.component.css']
 })
 export class MessagesComponent implements OnInit {
+  private conversationId: any;
   private messages: any[] = [];
 
   constructor(private messagesService: MessagesService,
@@ -16,8 +17,8 @@ export class MessagesComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      let conversationId = params['convId'];
-      this.messagesService.getConversationMessages(conversationId).subscribe((res) => {
+      this.conversationId = params['convId'];
+      this.messagesService.getConversationMessages(this.conversationId).subscribe((res) => {
         this.messages = res.conversation;
         console.log(this.messages)
       }, (err) => {

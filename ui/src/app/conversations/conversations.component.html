@@ -1,4 +1,8 @@
 <md-nav-list>
- <a md-list-item *ngFor="let conv of conversations" href="conversations/{{conv._id}}">{{conv.otherUser.username}}</a>
- <md-list-item *ngIf="conversations.length === 0">No conversations</md-list-item>
+  <a md-list-item *ngFor="let conv of conversations"
+                   href="conversations/{{conv._id}}"
+                   class="list-bottom-border">
+    {{conv.otherUser.username}}
+  </a>
+  <md-list-item *ngIf="conversations.length === 0">No conversations</md-list-item>
 </md-nav-list>
