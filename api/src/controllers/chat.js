@@ -2,36 +2,20 @@ import {
   Conversation,
   Message
 } from '../models';
+import { ChatService } from '../services/chat.service';
 
-export function getConversations (req, res, next) {
-  Conversation.find({ participants: req.user._id })
-    .populate('participants', '_id username')
-    .exec((err, conversations) => {
-      if (err) {
-        res.send({ error: err });
-        return next(err);
-      }
-
-      return res.status(200).json({ userId: req.user._id, conversations: conversations });
-    });
+export function getConversations (req, res) {
+  ChatService.getConversations(req.user._id).exec((err, conversations) => {
+    if (err) res.send({ error: err });
+    else res.status(200).json({ userId: req.user._id, conversations: conversations });
+  });
 }
 
-export function getConversation (req, res, next) {
-  Message.find({ conversationId: req.params.conversationId })
-    .select('createdAt link description author')
-    .sort('-createdAt')
-    .populate({
-      path: 'author',
-      select: '_id username'
-    })
-    .exec((err, messages) => {
-      if (err) {
-        res.send({ error: err });
-        return next(err);
-      }
-
-      return res.status(200).json({ conversation: messages });
-    });
+export function getConversation (req, res) {
+  ChatService.getConversation(req.params.conversationId).exec((err, conversation) => {
+    if (err) res.send({ error: err });
+    else res.status(200).json({ conversation: conversation });
+  });
 }
 
 export function newConversation (req, res, next) {
@@ -75,19 +59,14 @@ export function newConversation (req, res, next) {
   });
 }
 
-export function sendReply (req, res, next) {
-  const reply = new Message({
-    conversationId: req.params.conversationId,
-    link: req.body.composedMessage,
-    author: req.user._id
-  });
+export function sendReply (req, res) {
+  let convId = req.params.conversationId,
+    link = req.body.link,
+    desc = req.body.desc,
+    author = req.user._id;
 
-  reply.save((err/*, sentReply*/) => {
-    if (err) {
-      res.send({ error: err });
-      return next(err);
-    }
-
-    return res.status(200).json({ message: 'Reply successfully sent!' });
+  ChatService.newMessage(convId, link, desc, author).save((err) => {
+    if (err) res.send({ error: err });
+    else return res.status(200).json({ message: 'Reply successfully sent!' });
   });
 }
