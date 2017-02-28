@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'angular2-cookie/core';
 
 @Component({
   selector: 'app-navigation',
@@ -8,19 +9,25 @@ import { Router } from '@angular/router';
 })
 export class NavigationComponent {
   private navLinks: any = [{
-    label: 'Conversations',
+    icon: 'forum',
     route: '/'
   }, {
-    label: 'Bookmarks',
+    icon: 'bookmark',
     route: '/bookmarks'
   }, {
-    label: 'Profile',
+    icon: 'account_circle',
     route: '/profile'
   }];
 
-  constructor (private router: Router) { }
+  constructor (private router: Router,
+               private cookieService: CookieService) { }
 
   get activeRoute(): string {
     return this.router.url;
+  }
+
+  logout() {
+    this.cookieService.remove('lnktkn');
+    this.router.navigate(['/']);
   }
 }

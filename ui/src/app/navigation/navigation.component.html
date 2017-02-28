@@ -3,6 +3,10 @@
      *ngFor="let link of navLinks"
      [routerLink]="link.route"
      [active]="activeRoute === link.route">
-    {{link.label}}
+    <md-icon>{{link.icon}}</md-icon>
+  </a>
+  <a md-tab-link class="navbar-item"
+     (click)="logout()">
+    <md-icon>exit_to_app</md-icon>
   </a>
 </nav>
