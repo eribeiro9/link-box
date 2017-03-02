@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ConversationsService } from './conversations.service';
 
@@ -10,7 +11,8 @@ import { ConversationsService } from './conversations.service';
 export class ConversationsComponent implements OnInit {
   private conversations: any = [];
 
-  constructor(private conversationsService: ConversationsService) { }
+  constructor(private conversationsService: ConversationsService,
+              private router: Router) { }
 
   ngOnInit() {
     this.conversationsService.getConversations().subscribe((res: any) => {
@@ -19,5 +21,9 @@ export class ConversationsComponent implements OnInit {
         return conversation;
       });
     });
+  }
+
+  routeTo(convId: string) {
+    this.router.navigate(['/conversation', convId]);
   }
 }

@@ -1,6 +1,6 @@
 <md-nav-list>
   <a md-list-item *ngFor="let conv of conversations"
-                   href="conversations/{{conv._id}}"
+                   (click)="routeTo(conv._id)"
                    class="list-bottom-border">
     {{conv.otherUser.username}}
   </a>

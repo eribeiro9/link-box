@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MessagesComponent } from './messages/messages.component';
 
 const chatRoutes: Routes = [
-  { path: 'conversations/:convId', component: MessagesComponent }
+  { path: 'conversation/:convId', component: MessagesComponent }
 ];
 
 @NgModule({
