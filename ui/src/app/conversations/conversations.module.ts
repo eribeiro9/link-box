@@ -7,6 +7,7 @@ import { ConversationsComponent } from './conversations.component';
 import { ConversationsService } from './conversations.service';
 import { MessagesComponent } from './messages/messages.component';
 import { MessagesService } from './messages/messages.service';
+import { MessageDetailsComponent } from './messages/message-details/message-details.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { MessagesService } from './messages/messages.service';
   ],
   declarations: [
     ConversationsComponent,
-    MessagesComponent
+    MessagesComponent,
+    MessageDetailsComponent
   ],
   providers: [
     ConversationsService,

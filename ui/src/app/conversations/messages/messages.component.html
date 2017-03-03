@@ -1,7 +1,7 @@
 <md-nav-list>
  <md-list-item *ngFor="let msg of messages" class="list-bottom-border">
      <a md-line [href]="msg.link" target="_blank">{{ msg.description }}</a>
-     <a href="conversations/{{conversationId}}/{{msg._id}}"><md-icon>info</md-icon></a>
+     <a (click)="routeTo(msg._id)"><md-icon>description</md-icon></a>
   </md-list-item>
  <md-list-item *ngIf="messages.length === 0">No messages</md-list-item>
 </md-nav-list>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { MessagesService } from './messages.service';
 
@@ -13,17 +13,21 @@ export class MessagesComponent implements OnInit {
   private messages: any[] = [];
 
   constructor(private messagesService: MessagesService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.conversationId = params['convId'];
       this.messagesService.getConversationMessages(this.conversationId).subscribe((res) => {
         this.messages = res.conversation;
-        console.log(this.messages)
       }, (err) => {
         console.error(err);
       });
     });
+  }
+
+  routeTo(msgId: string) {
+    this.router.navigate(['/message', msgId]);
   }
 }
