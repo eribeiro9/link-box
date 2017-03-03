@@ -1,4 +1,4 @@
-//var SpecReporter = require('jasmine-spec-reporter');
+var SpecReporter = require('jasmine-spec-reporter').SpecReporter;
 
 exports.config = {
   specs: ['./dist/specs/**/*.spec.js'],
@@ -19,7 +19,11 @@ exports.config = {
   allScriptsTimeout: 11000,
 
   onPrepare: function() {
-    //jasmine.getEnv().addReporter(new SpecReporter());
     browser.ignoreSynchronization = true;
+    jasmine.getEnv().addReporter(new SpecReporter({
+      spec: {
+        displayStacktrace: true
+      }
+    }));
   }
 };
