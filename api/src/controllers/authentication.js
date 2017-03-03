@@ -33,16 +33,16 @@ export function register(req, res, next) {
   const password = req.body.password;
 
   if (!username) {
-    return res.status(422).send({ error: 'You must enter a username.'});
+    return res.status(422).json({ error: 'You must enter a username.'});
   } else if (!password) {
-    return res.status(422).send({ error: 'You must enter a password.' });
+    return res.status(422).json({ error: 'You must enter a password.' });
   }
 
   User.findOne({ username: username }, function(err, existingUser) {
     if (err) { return next(err); }
 
     if (existingUser) {
-      return res.status(422).send({ error: 'That username is already in use.' });
+      return res.status(422).json({ error: 'That username is already in use.' });
     }
 
     let newUser = new User({

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container container-top">
   <div class="container-header">
     <h1>Register</h1>
   </div>
@@ -38,4 +38,7 @@
       <button md-raised-button type="submit" color="primary">Register</button>
     </div>
   </form>
+</div>
+<div *ngFor="let err of errors" class="container">
+  <span class="red-text">{{err}}</span>
 </div>

@@ -14,6 +14,7 @@ export class LoginComponent {
     username: '',
     password: ''
   };
+  private errors = [];
 
   constructor (private loginService: LoginService,
                private cookieService: CookieService,
@@ -21,6 +22,7 @@ export class LoginComponent {
 
   login(event: Event) {
     event.preventDefault();
+    this.errors = [];
     this.loginService.login({
       username: this.model.username,
       password: this.model.password
@@ -28,7 +30,7 @@ export class LoginComponent {
       this.cookieService.put('lnktkn', res.token);
       this.router.navigate(['/']);
     }, (err: any) => {
-      console.error(err);
+      this.errors.push('Invalid credentials.');
     });
   }
 

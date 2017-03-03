@@ -16,6 +16,7 @@ export class RegisterComponent {
     password: '',
     verifyPassword: ''
   };
+  private errors = [];
 
   constructor (private registerService: RegisterService,
                private cookieService: CookieService,
@@ -23,6 +24,13 @@ export class RegisterComponent {
 
   register(event: Event): void {
     event.preventDefault();
+    this.errors = [];
+
+    if (this.model.password !== this.model.verifyPassword) {
+      this.errors.push('Password and Verify Password must be the same.');
+      return;
+    }
+
     this.registerService.register({
       username: this.model.username,
       email: this.model.email,
@@ -31,7 +39,7 @@ export class RegisterComponent {
       this.cookieService.put('lnktkn', res.token);
       this.router.navigate(['/']);
     }, (err: any) => {
-      console.error(err);
+      this.errors.push(err.body.error);
     });
   }
 
