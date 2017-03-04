@@ -25,20 +25,28 @@ describe('Login Page', () => {
     expect(loginPage.loginButton.isDisplayed()).toBe(true);
   });
 
-  xit('Requires username');
-
-  xit('Requires password');
-
-  it('Displays error for invalid credentials', () => {
-    loginPage.loginAs('eric', 'eric');
-    loginPage.waitForErrors();
-    expect(loginPage.errors.count()).toBe(1);
-    expect(loginPage.errors.get(0).getText()).toContain('Invalid credentials');
+  it('Goes back to Landing page', () => {
+    loginPage.backButton.click();
+    landingPage.waitFor();
+    expect(landingPage.isAt()).toBe(true);
   });
 
-  it('Redirects on successful login', () => {
-    loginPage.loginAs('eric', 'test');
-    conversationsPage.waitFor();
-    expect(conversationsPage.isAt()).toBe(true);
+  describe('Form', () => {
+    xit('Requires username');
+
+    xit('Requires password');
+
+    it('Displays error for invalid credentials', () => {
+      loginPage.loginAs('eric', 'eric');
+      loginPage.waitForErrors();
+      expect(loginPage.errors.count()).toBe(1);
+      expect(loginPage.errors.get(0).getText()).toContain('Invalid credentials');
+    });
+
+    it('Redirects on successful login', () => {
+      loginPage.loginAs('eric', 'test');
+      conversationsPage.waitFor();
+      expect(conversationsPage.isAt()).toBe(true);
+    });
   });
 });

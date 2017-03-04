@@ -20,4 +20,12 @@ export class MessagesService extends ApiService {
       .map(this.parseResponse)
       .catch(this.handleError);
   }
+
+  sendMessage(conversationId: string, link: string, description: string): Observable<any> {
+    let data = { link, description };
+    return this.http
+      .post(this.getConversationMessagesUrl + conversationId, JSON.stringify(data), this.getHeaderOptions(true))
+      .map(this.parseResponse)
+      .catch(this.handleError);
+  }
 }

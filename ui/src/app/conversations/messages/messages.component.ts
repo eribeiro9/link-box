@@ -44,5 +44,18 @@ export class MessagesComponent implements OnInit {
 
   send(event) {
     event.preventDefault();
+    this.messagesService.sendMessage(this.conversationId, this.model.link, this.model.description).subscribe((res) => {
+      this.showPane = false;
+      this.messages.push({
+        link: this.model.link,
+        description: this.model.description
+      });
+      this.model = {
+        link: '',
+        description: ''
+      };
+    }, (err) => {
+      console.log(err);
+    });
   }
 }
