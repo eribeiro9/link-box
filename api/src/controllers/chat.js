@@ -59,10 +59,10 @@ export function newConversation (req, res, next) {
   });
 }
 
-export function sendReply (req, res) {
+export function newMessage (req, res) {
   let convId = req.params.conversationId,
     link = req.body.link,
-    desc = req.body.desc,
+    desc = req.body.description,
     author = req.user._id;
 
   ChatService.newMessage(convId, link, desc, author).save((err) => {

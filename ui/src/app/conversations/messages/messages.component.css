@@ -1,0 +1,15 @@
+.message-pane {
+  border-top: 1px solid rgba(0, 0, 0, .3);
+  width: 100%;
+  position: absolute;
+  bottom: 47px;
+  background-color: darkgray;
+}
+
+.pane-btn {
+  width: 100%;
+}
+
+.pane-bottom-btn {
+  width: 49%;
+}

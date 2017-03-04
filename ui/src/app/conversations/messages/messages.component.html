@@ -1,7 +1,48 @@
-<md-nav-list>
- <md-list-item *ngFor="let msg of messages" class="list-bottom-border">
-     <a md-line [href]="msg.link" target="_blank">{{ msg.description }}</a>
-     <a (click)="routeTo(msg._id)"><md-icon>description</md-icon></a>
-  </md-list-item>
- <md-list-item *ngIf="messages.length === 0">No messages</md-list-item>
-</md-nav-list>
+<div class="at-messages-page">
+  <md-nav-list>
+    <md-list-item *ngFor="let msg of messages" class="list-bottom-border">
+      <a md-line [href]="msg.link" target="_blank">{{ msg.description }}</a>
+      <a (click)="goToDetails(msg._id)"><md-icon>description</md-icon></a>
+    </md-list-item>
+    <md-list-item *ngIf="messages.length === 0">No messages</md-list-item>
+  </md-nav-list>
+  <div class="message-pane">
+    <button md-button
+            (click)="togglePane()"
+            class="at-messages-pane-btn pane-btn">
+      {{ showPane ? 'Cancel' : 'New' }}
+    </button>
+    <div *ngIf="showPane">
+      <form (ngSubmit)="send($event)">
+        <md-input-container>
+          <input mdInput required
+                 type="url"
+                 name="link"
+                 placeholder="Link"
+                 [(ngModel)]="model.link"
+                 class="at-messages-link-input" />
+        </md-input-container>
+        <md-input-container>
+          <input mdInput
+                 type="text"
+                 name="description"
+                 placeholder="Description"
+                 [(ngModel)]="model.description"
+                 class="at-messages-description-input" />
+        </md-input-container>
+        <button md-raised-button
+                (click)="goToMore()"
+                class="at-messages-more-btn pane-bottom-btn">
+          More Options
+        </button>
+        <button md-raised-button
+                type="submit"
+                (click)="togglePane()"
+                color="primary"
+                class="at-messages-send-btn pane-bottom-btn">
+          Send
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

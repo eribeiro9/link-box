@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
 
 import { ConversationsRoutingModule } from './conversations-routing.module';
@@ -12,6 +13,7 @@ import { MessageDetailsComponent } from './messages/message-details/message-deta
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     MaterialModule.forRoot(),
     ConversationsRoutingModule
   ],

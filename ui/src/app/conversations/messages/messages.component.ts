@@ -11,6 +11,11 @@ import { MessagesService } from './messages.service';
 export class MessagesComponent implements OnInit {
   private conversationId: any;
   private messages: any[] = [];
+  private showPane: boolean = false;
+  private model: any = {
+    link: '',
+    description: ''
+  };
 
   constructor(private messagesService: MessagesService,
               private route: ActivatedRoute,
@@ -27,7 +32,17 @@ export class MessagesComponent implements OnInit {
     });
   }
 
-  routeTo(msgId: string) {
+  goToDetails(msgId: string) {
     this.router.navigate(['/message', msgId]);
+  }
+
+  goToMore() { }
+
+  togglePane() {
+    this.showPane = !this.showPane;
+  }
+
+  send(event) {
+    event.preventDefault();
   }
 }

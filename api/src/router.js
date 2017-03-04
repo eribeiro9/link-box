@@ -23,8 +23,7 @@ export function router (app) {
 
   chatRoutes.get('/', requireAuth, ChatController.getConversations);
   chatRoutes.get('/:conversationId', requireAuth, ChatController.getConversation);
-  chatRoutes.post('/:conversationId', requireAuth, ChatController.sendReply);
-  chatRoutes.post('/new/:recipient', requireAuth, ChatController.newConversation);
+  chatRoutes.post('/:conversationId', requireAuth, ChatController.newMessage);
 
   app.use('/', apiRoutes);
 }
