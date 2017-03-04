@@ -1,5 +1,7 @@
 import { Page } from './page';
 
+let EC = protractor.ExpectedConditions;
+
 export class LoginPage extends Page {
   constructor() {
     super('/login', 'at-login-page');
@@ -14,5 +16,9 @@ export class LoginPage extends Page {
     this.usernameInput.sendKeys(username);
     this.passwordInput.sendKeys(password);
     return this.loginButton.click();
+  }
+
+  waitForErrors() {
+    return browser.wait(EC.visibilityOf(this.errors.first()), 5000);
   }
 }

@@ -1,8 +1,10 @@
-<md-nav-list>
-  <a md-list-item *ngFor="let conv of conversations"
-                   (click)="routeTo(conv._id)"
-                   class="list-bottom-border">
-    {{conv.otherUser.username}}
-  </a>
-  <md-list-item *ngIf="conversations.length === 0">No conversations</md-list-item>
-</md-nav-list>
+<div class="at-conversations-page">
+  <md-nav-list>
+    <a md-list-item *ngFor="let conv of conversations"
+                     (click)="routeTo(conv._id)"
+                     class="list-bottom-border">
+      {{conv.otherUser.username}}
+    </a>
+    <md-list-item *ngIf="conversations.length === 0">No conversations</md-list-item>
+  </md-nav-list>
+</div>
