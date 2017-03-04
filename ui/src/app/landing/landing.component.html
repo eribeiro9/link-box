@@ -1,20 +1,32 @@
-<div class="landing-header">
-  <h1>Welcome to link-box!</h1>
-  <p>Send links to your friends</p>
-  <p>Save your favorites</p>
-  <p>Search your history easily</p>
-</div>
-<div class="landing-user">
-  <p>Looks like you're either new here or not logged in.</p>
-  <p>How about we fix that?</p>
-  <div class="landing-button-group">
-    <button md-raised-button (click)="register()" color="primary">Register</button>
-    <button md-raised-button (click)="login()" color="accent">Login</button>
+<div class="at-landing-page">
+  <div class="landing-header">
+    <h1>Welcome to link-box!</h1>
+    <p>Send links to your friends</p>
+    <p>Save your favorites</p>
+    <p>Search your history easily</p>
   </div>
-</div>
-<div class="landing-about">
-  <h3>Why link-box?</h3>
-  <p>Have you ever tried to find a link someone sent you months ago, but could never find it?</p>
-  <h4 class="landing-exclaim">No More!</h4>
-  <p>You can find old links within seconds with a quick search on link-box</p>
+  <div class="landing-user">
+    <p>Looks like you're either new here or not logged in.</p>
+    <p>How about we fix that?</p>
+    <div class="landing-button-group">
+      <button md-raised-button
+              (click)="register()"
+              color="primary"
+              class="at-landing-register-btn">
+        Register
+      </button>
+      <button md-raised-button
+              (click)="login()"
+              color="accent"
+              class="at-landing-login-btn">
+        Login
+      </button>
+    </div>
+  </div>
+  <div class="landing-about">
+    <h3>Why link-box?</h3>
+    <p>Have you ever tried to find a link someone sent you months ago, but could never find it?</p>
+    <h4 class="landing-exclaim">No More!</h4>
+    <p>You can find old links within seconds with a quick search on link-box</p>
+  </div>
 </div>

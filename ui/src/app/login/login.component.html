@@ -1,30 +1,43 @@
-<div class="container container-top">
-  <div class="container-header">
-    <h1>Login</h1>
+<div class="at-login-page">
+  <div class="container container-top">
+    <div class="container-header">
+      <h1>Login</h1>
+    </div>
+    <form (ngSubmit)="login($event)">
+      <div class="container-body">
+        <md-input-container>
+          <input mdInput required
+                 type="text"
+                 name="username"
+                 placeholder="Username"
+                 [(ngModel)]="model.username"
+                 class="at-login-username-input" />
+        </md-input-container>
+        <md-input-container>
+          <input mdInput required
+                 type="password"
+                 name="password"
+                 placeholder="Password"
+                 [(ngModel)]="model.password"
+                 class="at-login-password-input" />
+        </md-input-container>
+      </div>
+      <div class="container-footer">
+        <button md-raised-button
+                (click)="routeBack()"
+                class="at-login-back-btn">
+          Back
+        </button>
+        <button md-raised-button
+                type="submit"
+                color="primary"
+                class="at-login-login-btn">
+          Login
+        </button>
+      </div>
+    </form>
   </div>
-  <form (ngSubmit)="login($event)">
-    <div class="container-body">
-      <md-input-container>
-        <input mdInput required
-               type="text"
-               name="username"
-               placeholder="Username"
-               [(ngModel)]="model.username" />
-      </md-input-container>
-      <md-input-container>
-        <input mdInput required
-               type="password"
-               name="password"
-               placeholder="Password"
-               [(ngModel)]="model.password" />
-      </md-input-container>
-    </div>
-    <div class="container-footer">
-      <button md-raised-button (click)="routeBack()">Back</button>
-      <button md-raised-button type="submit" color="primary">Login</button>
-    </div>
-  </form>
-</div>
-<div *ngFor="let err of errors" class="container">
-  <span class="red-text">{{err}}</span>
+  <div *ngFor="let err of errors" class="container">
+    <span class="red-text at-login-error">{{err}}</span>
+  </div>
 </div>

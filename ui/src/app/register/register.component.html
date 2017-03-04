@@ -1,44 +1,59 @@
-<div class="container container-top">
-  <div class="container-header">
-    <h1>Register</h1>
+<div class="at-register-page">
+  <div class="container container-top">
+    <div class="container-header">
+      <h1>Register</h1>
+    </div>
+    <form (ngSubmit)="register($event)">
+      <div class="container-body">
+        <md-input-container>
+          <input mdInput required
+                 type="text"
+                 name="username"
+                 placeholder="Username"
+                 [(ngModel)]="model.username"
+                 class="at-register-username-input" />
+        </md-input-container>
+        <md-input-container>
+          <input mdInput
+                 type="text"
+                 name="email"
+                 placeholder="Email"
+                 [(ngModel)]="model.email"
+                 class="at-register-email-input" />
+        </md-input-container>
+        <md-input-container>
+          <input mdInput required
+                 type="password"
+                 name="password"
+                 placeholder="Password"
+                 [(ngModel)]="model.password"
+                 class="at-register-passworf-input" />
+        </md-input-container>
+        <md-input-container>
+          <input mdInput required
+                 type="password"
+                 name="verifyPassword"
+                 placeholder="Verify Password"
+                 [(ngModel)]="model.verifyPassword"
+                 class="at-register-verifyPassword-input" />
+        </md-input-container>
+      </div>
+      <div class="container-footer">
+        <button md-raised-button
+                (click)="routeBack()"
+                class="at-register-back-btn">
+          Back
+        </button>
+        <button md-raised-button
+                type="submit"
+                color="primary"
+                class="at-register-login-btn">
+          Register
+        </button>
+      </div>
+    </form>
   </div>
-  <form (ngSubmit)="register($event)">
-    <div class="container-body">
-      <md-input-container>
-        <input mdInput required
-               type="text"
-               name="username"
-               placeholder="Username"
-               [(ngModel)]="model.username" />
-      </md-input-container>
-      <md-input-container>
-        <input mdInput
-               type="text"
-               name="email"
-               placeholder="Email"
-               [(ngModel)]="model.email" />
-      </md-input-container>
-      <md-input-container>
-        <input mdInput required
-               type="password"
-               name="password"
-               placeholder="Password"
-               [(ngModel)]="model.password" />
-      </md-input-container>
-      <md-input-container>
-        <input mdInput required
-               type="password"
-               name="verifyPassword"
-               placeholder="Verify Password"
-               [(ngModel)]="model.verifyPassword" />
-      </md-input-container>
-    </div>
-    <div class="container-footer">
-      <button md-raised-button (click)="routeBack()">Back</button>
-      <button md-raised-button type="submit" color="primary">Register</button>
-    </div>
-  </form>
-</div>
-<div *ngFor="let err of errors" class="container">
-  <span class="red-text">{{err}}</span>
+  <div *ngFor="let err of errors" class="container">
+    <span class="red-text at-register-error">{{err}}</span>
+  </div>
 </div>
