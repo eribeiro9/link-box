@@ -9,12 +9,15 @@ import { CookieService } from 'angular2-cookie/core';
 })
 export class NavigationComponent {
   private navLinks: any = [{
+    name: 'conversations',
     icon: 'forum',
     route: '/'
   }, {
+    name: 'bookmarks',
     icon: 'bookmark',
     route: '/bookmarks'
   }, {
+    name: 'profile',
     icon: 'account_circle',
     route: '/profile'
   }];

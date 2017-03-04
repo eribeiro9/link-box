@@ -1,6 +1,6 @@
-import { Page } from './page';
+import { NavigationLayout } from './navigation.layout';
 
-export class ConversationsPage extends Page {
+export class ConversationsPage extends NavigationLayout {
   constructor() {
     super('/', 'at-conversations-page');
   }
