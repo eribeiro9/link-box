@@ -1,7 +1,15 @@
 <div class="at-messages-page">
-  <md-nav-list>
+  <div class="messages-participant">
+    <h2>{{ participant }}</h2>
+  </div>
+  <md-nav-list class="list-no-padding">
     <md-list-item *ngFor="let msg of messages" class="list-bottom-border">
-      <a md-line [href]="msg.link" target="_blank">{{ msg.description }}</a>
+      <a md-line
+         [href]="msg.link"
+         target="_blank"
+         [class.message-self]="msg.isSelf">
+        {{ msg.description || msg.link }}
+      </a>
       <a (click)="goToDetails(msg._id)"><md-icon>description</md-icon></a>
     </md-list-item>
     <md-list-item *ngIf="messages.length === 0">No messages</md-list-item>

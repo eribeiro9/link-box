@@ -10,7 +10,19 @@ export const ChatService = {
       .populate('participants', '_id username');
   },
 
-  getConversation(conversationId) {
+  getConversationParticipant(conversationId, userId) {
+    return Conversation
+      .find({ _id: conversationId })
+      .select('participants')
+      .populate({
+        path: 'participants',
+        match: { _id: { $ne: userId } },
+        select: 'username',
+        options: { limit: 1 }
+      });
+  },
+
+  getConversationMessages(conversationId) {
     return Message
       .find({ conversationId: conversationId })
       .select('createdAt link description author')

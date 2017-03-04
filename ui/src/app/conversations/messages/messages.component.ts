@@ -10,6 +10,7 @@ import { MessagesService } from './messages.service';
 })
 export class MessagesComponent implements OnInit {
   private conversationId: any;
+  private participant: string = '';
   private messages: any[] = [];
   private showPane: boolean = false;
   private model: any = {
@@ -25,7 +26,11 @@ export class MessagesComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.conversationId = params['convId'];
       this.messagesService.getConversationMessages(this.conversationId).subscribe((res) => {
-        this.messages = res.conversation;
+        this.participant = res.participant;
+        this.messages = res.conversation.map((msg) => {
+          msg.isSelf = msg.author._id === res.userId;
+          return msg;
+        });
       }, (err) => {
         console.error(err);
       });

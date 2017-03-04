@@ -11,10 +11,21 @@ export function getConversations (req, res) {
   });
 }
 
-export function getConversation (req, res) {
-  ChatService.getConversation(req.params.conversationId).exec((err, conversation) => {
-    if (err) res.json({ error: err });
-    else res.status(200).json({ conversation: conversation });
+export function getConversation (req, res, next) {
+  let convId = req.params.conversationId;
+  ChatService.getConversationMessages(convId).exec((err, messages) => {
+    if (err) {
+      res.json({ error: err });
+      return next();
+    }
+    ChatService.getConversationParticipant(convId, req.user._id).exec((err, p) => {
+      if (err) res.json({ error: err });
+      else res.status(200).json({
+        userId: req.user._id,
+        participant: p[0].participants[0].username,
+        conversation: messages
+      });
+    });
   });
 }
 

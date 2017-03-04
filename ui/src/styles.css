@@ -38,3 +38,7 @@ h1,h2,h3,h4,p {
 .red-text {
   color: red;
 }
+
+md-nav-list.list-no-padding {
+  padding-top: 0;
+}

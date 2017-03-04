@@ -1,3 +1,8 @@
+.messages-participant {
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, .3);
+}
+
 .message-pane {
   border-top: 1px solid rgba(0, 0, 0, .3);
   width: 100%;
@@ -12,4 +17,8 @@
 
 .pane-bottom-btn {
   width: 49%;
+}
+
+.message-self {
+  text-align: right;
 }
