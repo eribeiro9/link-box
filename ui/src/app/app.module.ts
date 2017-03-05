@@ -12,6 +12,7 @@ import { LoginModule } from './login/login.module';
 import { ConversationsModule } from './conversations/conversations.module';
 import { BookmarksModule } from './bookmarks/bookmarks.module';
 import { ProfileModule } from './profile/profile.module';
+import { UsersModule } from './users/users.module';
 
 import { AppComponent } from './app.component';
 import { AppService } from './app.service';
@@ -40,6 +41,7 @@ import { LogoutDialogComponent } from './navigation/logout-dialog/logout-dialog.
     ConversationsModule,
     BookmarksModule,
     ProfileModule,
+    UsersModule,
     AppRoutingModule
   ],
   providers: [

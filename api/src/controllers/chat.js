@@ -7,7 +7,7 @@ import { ChatService } from '../services/chat.service';
 export function getConversations (req, res) {
   ChatService.getConversations(req.user._id).exec((err, conversations) => {
     if (err) res.json({ error: err });
-    else res.status(200).json({ userId: req.user._id, conversations: conversations });
+    else res.status(200).json({ userId: req.user._id, conversations });
   });
 }
 

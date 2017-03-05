@@ -16,6 +16,10 @@ export class NavigationComponent {
     icon: 'forum',
     route: '/'
   }, {
+    name: 'users',
+    icon: 'group_add',
+    route: '/users'
+  }, {
     name: 'bookmarks',
     icon: 'bookmark',
     route: '/bookmarks'

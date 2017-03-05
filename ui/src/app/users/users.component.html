@@ -1,0 +1,9 @@
+<div class="at-users-page">
+  <md-nav-list>
+    <md-list-item *ngFor="let user of users"
+                     class="list-bottom-border">
+      {{user.username}}
+    </md-list-item>
+    <md-list-item *ngIf="users.length === 0">No users</md-list-item>
+  </md-nav-list>
+</div>
