@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { MdDialog } from '@angular/material';
 import { CookieService } from 'angular2-cookie/core';
+
+import { LogoutDialogComponent } from './logout-dialog/logout-dialog.component';
 
 @Component({
   selector: 'app-navigation',
@@ -23,14 +26,20 @@ export class NavigationComponent {
   }];
 
   constructor (private router: Router,
-               private cookieService: CookieService) { }
+               private cookieService: CookieService,
+               private logoutDialog: MdDialog) { }
 
   get activeRoute(): string {
     return this.router.url;
   }
 
   logout() {
-    this.cookieService.remove('lnktkn');
-    this.router.navigate(['/']);
+    let dialogRef = this.logoutDialog.open(LogoutDialogComponent);
+    dialogRef.afterClosed().subscribe(logout => {
+      if (logout) {
+        this.cookieService.remove('lnktkn');
+        this.router.navigate(['/']);
+      }
+    });
   }
 }
