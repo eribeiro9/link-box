@@ -37,14 +37,14 @@ describe('Login Page', () => {
     xit('Requires password');
 
     it('Displays error for invalid credentials', () => {
-      loginPage.loginAs('eric', 'eric');
+      loginPage.loginAs('test1', 'test1');
       loginPage.waitForErrors();
       expect(loginPage.errors.count()).toBe(1);
       expect(loginPage.errors.get(0).getText()).toContain('Invalid credentials');
     });
 
     it('Redirects on successful login', () => {
-      loginPage.loginAs('eric', 'test');
+      loginPage.loginAs('test1', '123');
       conversationsPage.waitFor();
       expect(conversationsPage.isAt()).toBe(true);
     });
