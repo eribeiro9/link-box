@@ -17,8 +17,7 @@ export const ChatService = {
       .populate({
         path: 'participants',
         match: { _id: { $ne: userId } },
-        select: 'username',
-        options: { limit: 1 }
+        select: 'username'
       });
   },
 
