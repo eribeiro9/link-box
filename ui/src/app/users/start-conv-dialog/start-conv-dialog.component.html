@@ -1,0 +1,7 @@
+<md-dialog-content>
+  Start a conversation with {{ dialogRef.config.data }}?
+</md-dialog-content>
+<md-dialog-actions>
+  <button md-button (click)="dialogRef.close(false)">Cancel</button>
+  <button md-button (click)="dialogRef.close(true)">Chat</button>
+</md-dialog-actions>

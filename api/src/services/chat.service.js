@@ -33,7 +33,11 @@ export const ChatService = {
       });
   },
 
-  // newConversation(recipient, link, description, author) { }
+  newConversation(...participants) {
+    return new Conversation({
+      participants: participants
+    });
+  },
 
   newMessage(conversationId, link, description, author) {
     return new Message({

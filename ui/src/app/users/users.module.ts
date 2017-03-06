@@ -4,6 +4,7 @@ import { MaterialModule } from '@angular/material';
 
 import { UsersComponent } from './users.component';
 import { UsersService } from './users.service';
+import { StartConvDialogComponent } from './start-conv-dialog/start-conv-dialog.component';
 
 @NgModule({
   imports: [
@@ -11,7 +12,11 @@ import { UsersService } from './users.service';
     MaterialModule.forRoot()
   ],
   declarations: [
-    UsersComponent
+    UsersComponent,
+    StartConvDialogComponent
+  ],
+  entryComponents: [
+    StartConvDialogComponent
   ],
   providers: [
     UsersService

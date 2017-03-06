@@ -1,9 +1,15 @@
 <div class="at-users-page">
-  <md-nav-list>
+  <md-list>
     <md-list-item *ngFor="let user of users"
                      class="list-bottom-border">
-      {{user.username}}
+      <span md-line>{{user.username}}</span>
+      <md-icon *ngIf="user.isSelf">person</md-icon>
+      <md-icon *ngIf="user.isConversation && !user.isSelf">chat_bubble</md-icon>
+      <a *ngIf="!user.isConversation && !user.isSelf"
+         (click)="startConversation(user)">
+        <md-icon>chat_bubble_outline</md-icon>
+      </a>
     </md-list-item>
     <md-list-item *ngIf="users.length === 0">No users</md-list-item>
-  </md-nav-list>
+  </md-list>
 </div>
