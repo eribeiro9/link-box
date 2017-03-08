@@ -4,21 +4,27 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "start": "npm run lint && npm run build && npm run test",
+    "start": "npm run lint && npm run build && concurrent -k \"npm run server\" \"npm run test\"",
     "lint": "eslint src/**/*.js",
     "build": "gulp clean && babel src -d dist",
-    "test": "protractor protractor.conf.js"
+    "test": "protractor protractor.conf.js",
+    "server": "node dist/server/server.js"
   },
   "dependencies": {
+    "body-parser": "^1.17.1",
+    "cors": "^2.8.1",
+    "express": "^4.15.2",
+    "jasmine-spec-reporter": "^3.2.0",
+    "request": "^2.80.0"
+  },
+  "devDependencies": {
     "babel-cli": "^6.23.0",
-    "babel-preset-latest": "^6.22.0",
+    "babel-preset-env": "^1.2.1",
+    "chromedriver": "^2.27.2",
+    "concurrently": "^3.4.0",
     "del": "^2.2.2",
     "eslint": "^3.16.1",
     "gulp": "^3.9.1",
-    "jasmine-spec-reporter": "^3.2.0"
-  },
-  "devDependencies": {
-    "chromedriver": "^2.27.2",
     "protractor": "^5.1.1"
   }
 }

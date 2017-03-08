@@ -11,11 +11,7 @@ describe('Login Page', () => {
     conversationsPage = new ConversationsPage();
     landingPage = new LandingPage();
     loginPage = new LoginPage();
-    // loginPage.goTo(); // DEFECT WORKAROUND
-    landingPage.goTo();
-    landingPage.loginButton.click();
-    loginPage.waitFor();
-    // DEFECT WORKAROUND
+    loginPage.goTo();
   });
 
   it('Displays two inputs and two buttons', () => {
