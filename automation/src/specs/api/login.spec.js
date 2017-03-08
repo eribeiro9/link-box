@@ -30,5 +30,11 @@ describe('Login API', () => {
     });
   });
 
-  xit('Logs in successfully');
+  it('Logs in successfully', () => {
+    loginAPI.login('test1', '123').then(res => {
+      expect(res.response.statusCode).toBe(200);
+      expect(res.response.body.user).toBeTruthy();
+      expect(res.response.body.token).toContain('JWT ');
+    });
+  });
 });
