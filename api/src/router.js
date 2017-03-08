@@ -2,9 +2,11 @@ import express from 'express';
 import passport from 'passport';
 
 import './config/passport';
-import * as AuthenticationController from './controllers/authentication';
-import * as ChatController from './controllers/chat';
-import * as UserController from './controllers/user';
+import {
+  AuthenticationController,
+  ChatController,
+  UserController
+} from './controllers';
 
 let requireAuth = passport.authenticate('jwt', { session: false });
 let requireLogin = passport.authenticate('local', { session: false });

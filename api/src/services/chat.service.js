@@ -4,13 +4,14 @@ import {
 } from '../models';
 
 export const ChatService = {
-  getConversations(userId) {
+  getConversations(userId, callback) {
     return Conversation
       .find({ participants: userId })
-      .populate('participants', '_id username');
+      .populate('participants', '_id username')
+      .exec(callback);
   },
 
-  getConversationParticipant(conversationId, userId) {
+  getConversationParticipant(conversationId, userId, callback) {
     return Conversation
       .find({ _id: conversationId })
       .select('participants')
@@ -18,10 +19,11 @@ export const ChatService = {
         path: 'participants',
         match: { _id: { $ne: userId } },
         select: 'username'
-      });
+      })
+      .exec(callback);
   },
 
-  getConversationMessages(conversationId) {
+  getConversationMessages(conversationId, callback) {
     return Message
       .find({ conversationId: conversationId })
       .select('createdAt link description author')
@@ -29,21 +31,22 @@ export const ChatService = {
       .populate({
         path: 'author',
         select: '_id username'
-      });
+      })
+      .exec(callback);
   },
 
-  newConversation(...participants) {
+  newConversation(participants, callback) {
     return new Conversation({
       participants: participants
-    });
+    }).save(callback);
   },
 
-  newMessage(conversationId, link, description, author) {
+  newMessage(conversationId, link, description, author, callback) {
     return new Message({
       conversationId: conversationId,
       link: link,
       description: description,
       author: author
-    });
+    }).save(callback);
   }
 };
