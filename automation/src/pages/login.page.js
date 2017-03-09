@@ -19,6 +19,6 @@ export class LoginPage extends Page {
   }
 
   waitForErrors() {
-    return browser.wait(EC.visibilityOf(this.errors.first()), 5000);
+    return browser.wait(EC.visibilityOf(this.errors.first()), 10000);
   }
 }

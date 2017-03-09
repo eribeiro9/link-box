@@ -10,5 +10,10 @@ export class NavigationLayout extends Page {
       profileTab: element(by.className('at-navigation-profile-tab')),
       logoutTab: element(by.className('at-navigation-logout-tab'))
     };
+    this.logoutDialog = {
+      dialog: element(by.className('at-logout-dialog')),
+      cancelButton: element(by.className('at-logout-cancel-btn')),
+      logoutButton: element(by.className('at-logout-logout-btn'))
+    };
   }
 }

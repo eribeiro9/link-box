@@ -4,7 +4,8 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "start": "npm run lint && npm run build && concurrent -k \"npm run server\" \"npm run test\"",
+    "start": "npm run lint && npm run build && concurrent --k \"npm run server\" \"npm run test\"",
+    "dev-start": "npm run build && concurrent --k \"npm run server\" \"npm run test\"",
     "lint": "eslint src/**/*.js",
     "build": "gulp clean && babel src -d dist",
     "test": "protractor protractor.conf.js",
@@ -21,7 +22,7 @@
     "babel-cli": "^6.23.0",
     "babel-preset-env": "^1.2.1",
     "chromedriver": "^2.27.2",
-    "concurrently": "^3.4.0",
+    "concurrently": "^3.0.0",
     "del": "^2.2.2",
     "eslint": "^3.16.1",
     "gulp": "^3.9.1",
