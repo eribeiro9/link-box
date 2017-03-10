@@ -4,8 +4,8 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "start": "npm run lint && npm run build && concurrent --k \"npm run server\" \"npm run test\"",
-    "dev-start": "npm run build && concurrent --k \"npm run server\" \"npm run test\"",
+    "start": "npm run lint && npm run build && concurrently -k \"npm run server\" \"npm run test\"",
+    "dev-start": "npm run build && concurrently -k \"npm run server\" \"npm run test\"",
     "lint": "eslint src/**/*.js",
     "build": "gulp clean && babel src -d dist",
     "test": "protractor protractor.conf.js",
