@@ -5,12 +5,12 @@ import {
 
 export const UserController = {
   getUsers (req, res, next) {
-    UserService.getUsers().exec((err, users) => {
+    UserService.getUsers((err, users) => {
       if (err) {
         res.json({ error: err });
         return next();
       }
-      ChatService.getConversations(req.user._id).exec((err, conversations) => {
+      ChatService.getConversations(req.user._id, (err, conversations) => {
         if (err) res.json({ error: err });
         else res.status(200).json({ userId: req.user._id, conversations, users });
       });

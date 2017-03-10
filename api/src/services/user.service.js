@@ -3,9 +3,10 @@ import {
 } from '../models';
 
 export const UserService = {
-  getUsers() {
+  getUsers(callback) {
     return User
       .find()
-      .select('_id username');
+      .select('_id username')
+      .exec(callback);
   }
 };
