@@ -1,7 +1,9 @@
-<md-dialog-content>
-  Are you sure you want to logout?
-</md-dialog-content>
-<md-dialog-actions>
-  <button md-button (click)="dialogRef.close(false)">Cancel</button>
-  <button md-button (click)="dialogRef.close(true)">Logout</button>
-</md-dialog-actions>
+<div class="at-logout-dialog">
+  <md-dialog-content>
+    Are you sure you want to logout?
+  </md-dialog-content>
+  <md-dialog-actions>
+    <button md-button (click)="dialogRef.close(false)" class="at-logout-cancel-btn">Cancel</button>
+    <button md-button (click)="dialogRef.close(true)" class="at-logout-logout-btn">Logout</button>
+  </md-dialog-actions>
+</div>
