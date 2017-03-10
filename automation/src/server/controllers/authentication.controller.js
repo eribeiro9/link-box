@@ -18,5 +18,23 @@ export const AuthenticationController = {
         body: body
       });
     });
+  },
+
+  register(req, res) {
+    request.post({
+      url: CONFIG.BASE_API_URL + '/auth/register',
+      json: true,
+      body: {
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password
+      }
+    }, (error, response, body) => {
+      res.status(200).json({
+        error: error,
+        response: response,
+        body: body
+      });
+    });
   }
 };

@@ -3,13 +3,17 @@ import request from 'request';
 import { CONFIG } from '../config/main';
 
 export class API {
-  callNodeServer(route, body, token) {
-    return browser.controlFlow().execute(function() {
+  constructor(route) {
+    this.route = route;
+  }
+
+  callNodeServer(call, body, token) {
+    return browser.controlFlow().execute(() => {
       let deferred = protractor.promise.defer();
 
       if (token) body['token'] = token;
       request.post({
-        url: CONFIG.BASE_NODE_URL + route,
+        url: CONFIG.BASE_NODE_URL + this.route + call,
         json: true,
         body: body || {}
       }, (err, res, body) => {

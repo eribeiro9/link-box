@@ -10,6 +10,7 @@ export function router (app) {
 
   apiRoutes.use('/auth', authRoutes);
   authRoutes.post('/login', AuthenticationController.login);
+  authRoutes.post('/register', AuthenticationController.register);
 
   app.use('/', apiRoutes);
 }
