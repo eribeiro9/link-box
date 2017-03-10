@@ -7,7 +7,7 @@ import {
   ProfilePage
 } from '../../pages';
 
-describe('Landing Page', () => {
+describe('Navigation', () => {
   let landingPage, loginPage, conversationsPage, usersPage, bookmarksPage, profilePage;
 
   beforeAll(() => {
