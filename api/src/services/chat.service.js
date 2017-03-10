@@ -27,7 +27,7 @@ export const ChatService = {
     return Message
       .find({ conversationId: conversationId })
       .select('createdAt link description author')
-      .sort('-createdAt')
+      .sort('createdAt')
       .populate({
         path: 'author',
         select: '_id username'
