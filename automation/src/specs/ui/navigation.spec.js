@@ -1,4 +1,5 @@
 import {
+  LandingPage,
   LoginPage,
   ConversationsPage,
   UsersPage,
@@ -7,7 +8,7 @@ import {
 } from '../../pages';
 
 describe('Landing Page', () => {
-  let loginPage, conversationsPage, usersPage, bookmarksPage, profilePage;
+  let landingPage, loginPage, conversationsPage, usersPage, bookmarksPage, profilePage;
 
   beforeAll(() => {
     loginPage = new LoginPage();
@@ -18,6 +19,7 @@ describe('Landing Page', () => {
   });
 
   beforeEach(() => {
+    landingPage = new LandingPage();
     conversationsPage = new ConversationsPage();
     usersPage = new UsersPage();
     bookmarksPage = new BookmarksPage();
@@ -44,8 +46,19 @@ describe('Landing Page', () => {
   });
 
   describe('Logout', () => {
-    xit('Opens and closes');
+    it('Opens and closes', () => {
+      expect(conversationsPage.logoutDialog.dialog.isPresent()).toBe(false);
+      conversationsPage.navigation.logoutTab.click();
+      expect(conversationsPage.logoutDialog.dialog.isPresent()).toBe(true);
+      conversationsPage.logoutDialog.cancelButton.click();
+      expect(conversationsPage.logoutDialog.dialog.isPresent()).toBe(false);
+    });
 
-    xit('Logs out and redirects');
+    it('Logs out and redirects', () => {
+      conversationsPage.navigation.logoutTab.click();
+      conversationsPage.logoutDialog.logoutButton.click();
+      landingPage.waitFor();
+      expect(landingPage.isAt()).toBe(true);
+    });
   });
 });
