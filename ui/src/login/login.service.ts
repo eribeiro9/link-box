@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 import { CookieService } from 'angular2-cookie/core';
 import { Observable } from 'rxjs/Observable';
 
-import { ApiService } from '../common/api.service';
+import { ApiService } from '../shared/services';
 
 @Injectable()
 export class LoginService extends ApiService {

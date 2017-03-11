@@ -4,11 +4,13 @@ import { MaterialModule } from '@angular/material';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import { ProfileComponent } from './profile.component';
+import { ProfileRoutingModule } from './profile-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule.forRoot()
+    MaterialModule.forRoot(),
+    ProfileRoutingModule
   ],
   declarations: [ProfileComponent],
   providers: [CookieService],

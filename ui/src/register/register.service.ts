@@ -3,20 +3,20 @@ import { Http } from '@angular/http';
 import { CookieService } from 'angular2-cookie/core';
 import { Observable } from 'rxjs/Observable';
 
-import { ApiService } from '../common/api.service';
+import { ApiService } from '../shared/services';
 
 @Injectable()
-export class ConversationsService extends ApiService {
-  private getConversationsUrl = this.apiUrl('/chat');
+export class RegisterService extends ApiService {
+  private registerUrl = this.apiUrl('/auth/register');
 
   constructor(protected cookieService: CookieService,
               private http: Http) {
     super(cookieService);
   }
 
-  getConversations(): Observable<any[]> {
+  register(data): Observable<string[]> {
     return this.http
-      .get(this.getConversationsUrl, this.getHeaderOptions(true))
+      .post(this.registerUrl, JSON.stringify(data), this.getHeaderOptions(false))
       .map(this.parseResponse)
       .catch(this.handleError);
   }

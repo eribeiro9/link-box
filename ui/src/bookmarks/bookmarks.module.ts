@@ -2,12 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { BookmarksComponent } from './bookmarks.component';
+import { BookmarksRoutingModule } from './bookmarks-routing.module';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    BookmarksRoutingModule
   ],
-  declarations: [BookmarksComponent],
-  exports: [BookmarksComponent]
+  declarations: [
+    BookmarksComponent
+  ],
+  exports: [
+    BookmarksComponent
+  ]
 })
 export class BookmarksModule { }

@@ -4,20 +4,22 @@ import { MaterialModule } from '@angular/material';
 import { FormsModule }   from '@angular/forms';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 
-import { RegisterComponent } from './register.component';
-import { RegisterService } from './register.service';
+import { LoginComponent } from './login.component';
+import { LoginService } from './login.service';
+import { LoginRoutingModule } from './login-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    MaterialModule.forRoot()
+    MaterialModule.forRoot(),
+    LoginRoutingModule
   ],
-  declarations: [RegisterComponent],
+  declarations: [LoginComponent],
   providers: [
-    RegisterService,
+    LoginService,
     CookieService
   ],
-  exports: [RegisterComponent]
+  exports: [LoginComponent]
 })
-export class RegisterModule { }
+export class LoginModule { }

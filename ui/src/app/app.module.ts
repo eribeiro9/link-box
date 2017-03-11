@@ -6,13 +6,13 @@ import { MaterialModule } from '@angular/material';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import { AppRoutingModule } from './app-routing.module';
-import { LandingModule } from './landing/landing.module';
-import { RegisterModule } from './register/register.module';
-import { LoginModule } from './login/login.module';
-import { ConversationsModule } from './conversations/conversations.module';
-import { BookmarksModule } from './bookmarks/bookmarks.module';
-import { ProfileModule } from './profile/profile.module';
-import { UsersModule } from './users/users.module';
+import { LandingModule } from '../landing/landing.module';
+import { RegisterModule } from '../register/register.module';
+import { LoginModule } from '../login/login.module';
+import { ConversationsModule } from '../conversations/conversations.module';
+import { BookmarksModule } from '../bookmarks/bookmarks.module';
+import { ProfileModule } from '../profile/profile.module';
+import { UsersModule } from '../users/users.module';
 
 import { AppComponent } from './app.component';
 import { AppService } from './app.service';

@@ -5,11 +5,13 @@ import { MaterialModule } from '@angular/material';
 import { UsersComponent } from './users.component';
 import { UsersService } from './users.service';
 import { StartConvDialogComponent } from './start-conv-dialog/start-conv-dialog.component';
+import { UsersRoutingModule } from './users-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule.forRoot()
+    MaterialModule.forRoot(),
+    UsersRoutingModule
   ],
   declarations: [
     UsersComponent,
