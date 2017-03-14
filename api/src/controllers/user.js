@@ -19,7 +19,7 @@ export const UserController = {
   },
 
   getBookmarks (req, res) {
-    ResponseHelper.success(res, req.user.bookmarks);
+    ResponseHelper.success(res, { bookmarks: req.user.bookmarks });
   },
 
   addBookmark (req, res) {

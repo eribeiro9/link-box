@@ -1,5 +1,13 @@
 <div class="at-bookmarks-page">
-  <p>
-    bookmarks works!
-  </p>
+  <md-nav-list class="list-no-padding">
+    <md-list-item *ngFor="let bkmk of bookmarks" class="list-bottom-border">
+      <a md-line
+         [href]="bkmk.link"
+         target="_blank">
+        {{ bkmk.description || bkmk.link }}
+      </a>
+      <a><md-icon>description</md-icon></a>
+    </md-list-item>
+    <md-list-item *ngIf="bookmarks.length === 0">No bookmarks</md-list-item>
+  </md-nav-list>
 </div>
