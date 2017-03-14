@@ -3,21 +3,20 @@ import LocalStrategy from 'passport-local';
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
 
 import { CONFIG } from './main';
-import { User } from '../models/user';
+import { UserService } from '../services';
 
 // LOCAL =======================================================================
 
 let localOptions = { usernameField: 'username' };
 
-let localLogin = new LocalStrategy(localOptions, function(username, password, done) {
-  User.findOne({ username: username }, function(err, user) {
+let localLogin = new LocalStrategy(localOptions, (username, password, done) => {
+  UserService.findByUsername(username, (err, user) => {
     if(err) { return done(err); }
     if(!user) { return done(null, false, {
       error: 'Your login details could not be verified. Please try again.'
-
     }); }
 
-    user.comparePassword(password, function(err, isMatch) {
+    user.comparePassword(password, (err, isMatch) => {
       if (err) { return done(err); }
       if (!isMatch) {
         return done(null, false, {
@@ -39,8 +38,8 @@ let jwtOptions = {
   secretOrKey: CONFIG.SECRET
 };
 
-let jwtLogin = new JwtStrategy(jwtOptions, function(payload, done) {
-  User.findById(payload._id, function(err, user) {
+let jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
+  UserService.findById(payload._id, (err, user) => {
     if (err) return done(err, false);
 
     if (user) {

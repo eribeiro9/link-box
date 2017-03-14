@@ -8,7 +8,7 @@ import { CONFIG } from './config/main';
 import { router } from './router';
 import { socketEvents } from './socket-events';
 
-mongoose.Promise = global.Promise;
+mongoose.Promise = global.Promise;// may not be working
 mongoose.connect(CONFIG.DATABASE);
 
 let app = express();

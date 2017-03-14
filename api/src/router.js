@@ -31,6 +31,10 @@ export function router (app) {
 
   apiRoutes.use('/users', userRoutes);
   userRoutes.get('/', requireAuth, UserController.getUsers);
+  userRoutes.get('/bookmarks', requireAuth, UserController.getBookmarks);
+  userRoutes.post('/bookmarks', requireAuth, UserController.addBookmark);
+  userRoutes.put('/bookmarks/:bookmarkId', requireAuth, UserController.editBookmark);
+  userRoutes.post('/bookmarks/:bookmarkId', requireAuth, UserController.deleteBookmark);
 
   app.use('/', apiRoutes);
 }

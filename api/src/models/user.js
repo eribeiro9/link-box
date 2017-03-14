@@ -3,6 +3,17 @@ import bcrypt from 'bcrypt-nodejs';
 
 let Schema = mongoose.Schema;
 
+const BookmarkSchema = new Schema({
+  link: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String
+  },
+  tags: [String]
+});
+
 const UserSchema = new Schema({
   username: {
     type: String,
@@ -19,9 +30,10 @@ const UserSchema = new Schema({
   },
   role: {
     type: String,
-    enum: ['user', 'a'],
+    enum: ['user', 'admin'],
     default: 'user'
   },
+  bookmarks: [BookmarkSchema],
   resetPasswordToken: { type: String },
   resetPasswordExpires: { type: Date }
 }, {

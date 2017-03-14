@@ -1,10 +1,11 @@
 import { ChatService } from '../services';
+import { ResponseHelper } from '../helpers';
 
 export const ChatController = {
   getConversations (req, res) {
     ChatService.getConversations(req.user._id, (err, conversations) => {
-      if (err) res.json({ error: err });
-      else res.status(200).json({ userId: req.user._id, conversations });
+      if (err) ResponseHelper.serverError(res, err);
+      else ResponseHelper.success(res, { userId: req.user._id, conversations });
     });
   },
 
@@ -12,12 +13,12 @@ export const ChatController = {
     let convId = req.params.conversationId;
     ChatService.getConversationMessages(convId, (err, messages) => {
       if (err) {
-        res.json({ error: err });
+        ResponseHelper.serverError(res, err);
         return next();
       }
       ChatService.getConversationParticipant(convId, req.user._id, (err, p) => {
-        if (err) res.json({ error: err });
-        else res.status(200).json({
+        if (err) ResponseHelper.serverError(res, err);
+        else ResponseHelper.success(res, {
           userId: req.user._id,
           participant: p[0].participants[0].username,
           conversation: messages
@@ -28,13 +29,13 @@ export const ChatController = {
 
   newConversation (req, res, next) {
     if (!req.body.recipient) {
-      res.status(422).json({ error: 'Please choose a valid recipient for your message.' });
+      ResponseHelper.badRequest('Please choose a valid recipient for your message.');
       return next();
     }
 
     ChatService.newConversation([req.body.recipient, req.user._id], (err) => {
-      if (err) res.json({ error: err });
-      else return res.status(201).json({ message: 'Conversation successfully started!' });
+      if (err) ResponseHelper.serverError(res, err);
+      else ResponseHelper.created(res, { message: 'Conversation successfully started!' });
     });
   },
 
@@ -45,8 +46,8 @@ export const ChatController = {
       author = req.user._id;
 
     ChatService.newMessage(convId, link, desc, author, (err) => {
-      if (err) res.json({ error: err });
-      else return res.status(201).json({ message: 'Reply successfully sent!' });
+      if (err) ResponseHelper.serverError(res, err);
+      else ResponseHelper.created(res, { message: 'Reply successfully sent!' });
     });
   }
 };
