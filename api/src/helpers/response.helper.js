@@ -6,13 +6,13 @@ export const ResponseHelper = {
   created(res, json) {
     return res.status(201).json(json);
   },
+  
+  badRequest(res, msg) {
+    return res.status(400).json({ error: msg });
+  },
 
   unauthorized(res) {
     return res.status(401).json({ error: 'You are not authorized to view this content.' });
-  },
-
-  badRequest(res, msg) {
-    return res.status(422).json({ error: msg });
   },
 
   serverError(res, msg) {
