@@ -6,7 +6,8 @@
          target="_blank">
         {{ bkmk.description || bkmk.link }}
       </a>
-      <a><md-icon>description</md-icon></a>
+      <a (click)="edit(bkmk._id)"><md-icon>edit</md-icon></a>
+      <a (click)="delete(bkmk._id)"><md-icon>delete</md-icon></a>
     </md-list-item>
     <md-list-item *ngIf="bookmarks.length === 0">No bookmarks</md-list-item>
   </md-nav-list>

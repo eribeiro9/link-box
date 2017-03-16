@@ -5,6 +5,7 @@ import { MaterialModule } from '@angular/material';
 import { BookmarksComponent } from './bookmarks.component';
 import { BookmarksService } from './bookmarks.service';
 import { BookmarksRoutingModule } from './bookmarks-routing.module';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 @NgModule({
   imports: [
@@ -13,7 +14,11 @@ import { BookmarksRoutingModule } from './bookmarks-routing.module';
     BookmarksRoutingModule
   ],
   declarations: [
-    BookmarksComponent
+    BookmarksComponent,
+    DeleteDialogComponent
+  ],
+  entryComponents: [
+    DeleteDialogComponent
   ],
   providers: [
     BookmarksService

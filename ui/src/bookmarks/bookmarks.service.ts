@@ -7,7 +7,7 @@ import { ApiService } from '../shared/services';
 
 @Injectable()
 export class BookmarksService extends ApiService {
-  private getBookmarksUrl = this.apiUrl('/users/bookmarks');
+  private bookmarksUrl = this.apiUrl('/users/bookmarks');
 
   constructor(protected cookieService: CookieService,
               private http: Http) {
@@ -16,7 +16,14 @@ export class BookmarksService extends ApiService {
 
   getBookmarks(): Observable<any[]> {
     return this.http
-      .get(this.getBookmarksUrl, this.getHeaderOptions(true))
+      .get(this.bookmarksUrl, this.getHeaderOptions(true))
+      .map(this.parseResponse)
+      .catch(this.handleError);
+  }
+
+  deleteBookmark(bookmarkId: string) {
+    return this.http
+      .delete(`${this.bookmarksUrl}/${bookmarkId}`, this.getHeaderOptions(true))
       .map(this.parseResponse)
       .catch(this.handleError);
   }
