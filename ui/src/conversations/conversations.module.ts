@@ -9,6 +9,7 @@ import { ConversationsService } from './conversations.service';
 import { MessagesComponent } from './messages/messages.component';
 import { MessagesService } from './messages/messages.service';
 import { MessageDetailsComponent } from './messages/message-details/message-details.component';
+import { AddBookmarkDialogComponent } from './shared/add-bookmark-dialog/add-bookmark-dialog.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,11 @@ import { MessageDetailsComponent } from './messages/message-details/message-deta
   declarations: [
     ConversationsComponent,
     MessagesComponent,
-    MessageDetailsComponent
+    MessageDetailsComponent,
+    AddBookmarkDialogComponent
+  ],
+  entryComponents: [
+    AddBookmarkDialogComponent
   ],
   providers: [
     ConversationsService,

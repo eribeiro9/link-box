@@ -7,7 +7,8 @@ import { ApiService } from '../../shared/services';
 
 @Injectable()
 export class MessagesService extends ApiService {
-  private getConversationMessagesUrl = this.apiUrl('/chat/');
+  private chatUrl = this.apiUrl('/chat/');
+  private bookmarksUrl = this.apiUrl('/users/bookmarks/');
 
   constructor(protected cookieService: CookieService,
               private http: Http) {
@@ -16,7 +17,7 @@ export class MessagesService extends ApiService {
 
   getConversationMessages(conversationId: string): Observable<any> {
     return this.http
-      .get(this.getConversationMessagesUrl + conversationId, this.getHeaderOptions(true))
+      .get(this.chatUrl + conversationId, this.getHeaderOptions(true))
       .map(this.parseResponse)
       .catch(this.handleError);
   }
@@ -24,7 +25,15 @@ export class MessagesService extends ApiService {
   sendMessage(conversationId: string, link: string, description: string): Observable<any> {
     let data = { link, description };
     return this.http
-      .post(this.getConversationMessagesUrl + conversationId, JSON.stringify(data), this.getHeaderOptions(true))
+      .post(this.chatUrl + conversationId, JSON.stringify(data), this.getHeaderOptions(true))
+      .map(this.parseResponse)
+      .catch(this.handleError);
+  }
+
+  newBookmark(link: string, description: string, tags: string[]) {
+    let data = { link, description, tags };
+    return this.http
+      .post(this.bookmarksUrl, JSON.stringify(data), this.getHeaderOptions(true))
       .map(this.parseResponse)
       .catch(this.handleError);
   }

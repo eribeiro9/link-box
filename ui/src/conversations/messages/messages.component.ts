@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MdDialog } from '@angular/material';
 
 import { MessagesService } from './messages.service';
+import { AddBookmarkDialogComponent } from '../shared/add-bookmark-dialog/add-bookmark-dialog.component';
 
 @Component({
   selector: 'app-messages',
@@ -20,7 +22,8 @@ export class MessagesComponent implements OnInit {
 
   constructor(private messagesService: MessagesService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private dialog: MdDialog) { }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -34,6 +37,18 @@ export class MessagesComponent implements OnInit {
       }, (err) => {
         console.error(err);
       });
+    });
+  }
+
+  addBookmark(msg) {
+    let dialogRef = this.dialog.open(AddBookmarkDialogComponent, {
+      data: msg
+    });
+    dialogRef.afterClosed().subscribe(bookmark => {
+      if (bookmark) {
+        let tags = [];
+        this.messagesService.newBookmark(bookmark.link, bookmark.description, tags);
+      }
     });
   }
 

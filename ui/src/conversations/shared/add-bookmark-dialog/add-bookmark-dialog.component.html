@@ -1,0 +1,20 @@
+<md-dialog-content>
+  <md-input-container>
+    <input mdInput required
+           type="url"
+           name="link"
+           placeholder="Link"
+           [(ngModel)]="dialogRef.config.data.link" />
+  </md-input-container>
+  <md-input-container>
+    <input mdInput
+           type="text"
+           name="description"
+           placeholder="Description"
+           [(ngModel)]="dialogRef.config.data.description" />
+  </md-input-container>
+</md-dialog-content>
+<md-dialog-actions>
+  <button md-button (click)="dialogRef.close(null)">Cancel</button>
+  <button md-button (click)="dialogRef.close(dialogRef.config.data)">Save</button>
+</md-dialog-actions>

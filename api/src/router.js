@@ -5,7 +5,8 @@ import './config/passport';
 import {
   AuthenticationController,
   ChatController,
-  UserController
+  UserController,
+  WakeUpController
 } from './controllers';
 
 let requireAuth = passport.authenticate('jwt', { session: false });
@@ -16,6 +17,7 @@ export function router (app) {
   let authRoutes = express.Router();
   let chatRoutes = express.Router();
   let userRoutes = express.Router();
+  let wakeUpRoutes = express.Router();
 
   apiRoutes.use('/auth', authRoutes);
   authRoutes.post('/register', AuthenticationController.register);
@@ -35,6 +37,10 @@ export function router (app) {
   userRoutes.post('/bookmarks', requireAuth, UserController.addBookmark);
   userRoutes.put('/bookmarks/:bookmarkId', requireAuth, UserController.editBookmark);
   userRoutes.delete('/bookmarks/:bookmarkId', requireAuth, UserController.deleteBookmark);
+
+
+  apiRoutes.use('/wakeup', wakeUpRoutes);
+  wakeUpRoutes.get('/', WakeUpController.wakeUp);
 
   app.use('/', apiRoutes);
 }

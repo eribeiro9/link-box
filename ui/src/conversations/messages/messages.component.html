@@ -10,6 +10,7 @@
          [class.message-self]="msg.isSelf">
         {{ msg.description || msg.link }}
       </a>
+      <a (click)="addBookmark(msg)"><md-icon>bookmark_border</md-icon></a>
       <a (click)="goToDetails(msg._id)"><md-icon>description</md-icon></a>
     </md-list-item>
     <md-list-item *ngIf="messages.length === 0">No messages</md-list-item>
