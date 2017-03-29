@@ -27,6 +27,10 @@ export const UserService = {
     }).save(callback);
   },
 
+  removeByUsername(username, callback) {
+    return User.remove({ username: username }, callback);
+  },
+
   addBookmark(user, bookmark, callback) {
     user.bookmarks.push(bookmark);
     return user.save(callback);

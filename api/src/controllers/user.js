@@ -18,6 +18,15 @@ export const UserController = {
     });
   },
 
+  removeUser (req, res) {
+    let username = req.params.username;
+
+    UserService.removeByUsername(username, (err) => {
+      if (err) ResponseHelper.serverError(res, err);
+      else ResponseHelper.success(res, null);
+    });
+  },
+
   getBookmarks (req, res) {
     ResponseHelper.success(res, { bookmarks: req.user.bookmarks });
   },

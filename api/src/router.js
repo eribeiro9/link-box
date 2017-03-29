@@ -1,6 +1,7 @@
 import express from 'express';
 import passport from 'passport';
 
+import { CONFIG } from './config/main';
 import './config/passport';
 import {
   AuthenticationController,
@@ -11,6 +12,11 @@ import {
 
 let requireAuth = passport.authenticate('jwt', { session: false });
 let requireLogin = passport.authenticate('local', { session: false });
+let requireKey = (req, res, next) => {
+  let key = req.get('Authorization');
+  if (key === CONFIG.AUTOMATION_KEY) next();
+  else res.status(401).end();
+};
 
 export function router (app) {
   let apiRoutes = express.Router();
@@ -33,6 +39,7 @@ export function router (app) {
 
   apiRoutes.use('/users', userRoutes);
   userRoutes.get('/', requireAuth, UserController.getUsers);
+  userRoutes.delete('/:username', requireKey, UserController.removeUser);
   userRoutes.get('/bookmarks', requireAuth, UserController.getBookmarks);
   userRoutes.post('/bookmarks', requireAuth, UserController.addBookmark);
   userRoutes.put('/bookmarks/:bookmarkId', requireAuth, UserController.editBookmark);

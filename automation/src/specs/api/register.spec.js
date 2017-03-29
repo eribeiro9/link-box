@@ -1,12 +1,14 @@
 import {
-  AuthenticationAPI
+  AuthenticationAPI,
+  UserAPI
 } from '../../apis';
 
 describe('Register API', () => {
-  let authAPI;
+  let authAPI, userAPI;
 
   beforeEach(() => {
     authAPI = new AuthenticationAPI();
+    userAPI = new UserAPI();
   });
 
   it('Requires username', () => {
@@ -30,5 +32,12 @@ describe('Register API', () => {
     });
   });
 
-  xit('Registers successfully');
+  xit('Registers successfully', () => {
+    authAPI.register('testy', 'test').then(res => {
+      expect(res.response.statusCode).toBe(401);
+      expect(res.response.body.error).toBe('That username is already in use.');
+
+      userAPI.remove('testy');
+    });
+  });
 });
