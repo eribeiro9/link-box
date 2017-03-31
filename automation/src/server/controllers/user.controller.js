@@ -5,7 +5,10 @@ import { CONFIG } from '../../config/main';
 export const UserController = {
   remove(req, res) {
     request.delete({
-      url: CONFIG.BASE_API_URL + '/users/${req.body.username}'
+      url: CONFIG.BASE_API_URL + `/users/${req.body.username}`,
+      headers: {
+        'Authorization': CONFIG.API_KEY
+      }
     }, (error, response, body) => {
       res.status(200).json({
         error: error,
