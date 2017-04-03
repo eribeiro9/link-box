@@ -1,5 +1,10 @@
 @import '~@angular/material/core/theming/prebuilt/indigo-pink.css';
 
+html {
+  margin: 0;
+  height: 100%;
+}
+
 body {
   background-color: lightgray;
   font-family: "arial";

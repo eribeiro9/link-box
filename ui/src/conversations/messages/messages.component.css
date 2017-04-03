@@ -3,10 +3,14 @@
   border-bottom: 1px solid rgba(0, 0, 0, .3);
 }
 
+.pane-room {
+  margin-bottom: 47px;
+}
+
 .message-pane {
   border-top: 1px solid rgba(0, 0, 0, .3);
   width: 100%;
-  position: absolute;
+  position: fixed;
   bottom: 47px;
   background-color: darkgray;
 }
